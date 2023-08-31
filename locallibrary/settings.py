@@ -160,14 +160,12 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-#OIDC_RP_CLIENT_ID = os.environ['OIDC_RP_CLIENT_ID']
-#OIDC_RP_CLIENT_SECRET = os.environ['OIDC_RP_CLIENT_SECRET']
 OIDC_RP_CLIENT_ID = 'django'
-OIDC_RP_CLIENT_SECRET = 'EFTcWghHSrCvxhg5oi0VNJvmNmuEXWZf'
-OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://app-staging.phasetwo.io/auth/realms/django/protocol/openid-connect/auth'
-OIDC_OP_TOKEN_ENDPOINT = 'https://app-staging.phasetwo.io/auth/realms/django/protocol/openid-connect/token'
-OIDC_OP_USER_ENDPOINT = 'https://app-staging.phasetwo.io/auth/realms/django/protocol/openid-connect/userinfo'
-OIDC_OP_JWKS_ENDPOINT = 'https://app-staging.phasetwo.io/auth/realms/django/protocol/openid-connect/certs'
+OIDC_RP_CLIENT_SECRET = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://keycloak-url/auth/realms/your-realm/protocol/openid-connect/auth'
+OIDC_OP_TOKEN_ENDPOINT = 'https://keycloak-url/auth/realms/your-realm/protocol/openid-connect/token'
+OIDC_OP_USER_ENDPOINT = 'https://keycloak-url/auth/realms/your-realm/protocol/openid-connect/userinfo'
+OIDC_OP_JWKS_ENDPOINT = 'https://keycloak-url/auth/realms/your-realm/protocol/openid-connect/certs'
 OIDC_RP_SIGN_ALGO = 'RS256'
 
 LOGIN_URL = 'oidc_authentication_init'
