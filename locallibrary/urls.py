@@ -45,8 +45,13 @@ urlpatterns += [
 ]
 
 
-
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
+]
+
+
+#Add authentication URLs provided by mozilla-django-oidc
+urlpatterns += [
+    path('oidc/', include('mozilla_django_oidc.urls')),
 ]

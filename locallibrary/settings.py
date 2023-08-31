@@ -40,6 +40,8 @@ CSRF_TRUSTED_ORIGINS = ['https://*.railway.app','https://*.127.0.0.1']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    # Add mozilla-django-oidc auth
+    'mozilla_django_oidc',  # Load after django.contrib.auth
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -124,7 +126,7 @@ USE_TZ = True
 
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '/'
+#LOGIN_REDIRECT_URL = '/'
 
 # Add to test email:
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -151,3 +153,23 @@ STATIC_URL = '/static/'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Mozilla OIDC additions for Authentication
+AUTHENTICATION_BACKENDS = (
+    'mozilla_django_oidc.auth.OIDCAuthenticationBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+#OIDC_RP_CLIENT_ID = os.environ['OIDC_RP_CLIENT_ID']
+#OIDC_RP_CLIENT_SECRET = os.environ['OIDC_RP_CLIENT_SECRET']
+OIDC_RP_CLIENT_ID = 'django'
+OIDC_RP_CLIENT_SECRET = 'EFTcWghHSrCvxhg5oi0VNJvmNmuEXWZf'
+OIDC_OP_AUTHORIZATION_ENDPOINT = 'https://app-staging.phasetwo.io/auth/realms/django/protocol/openid-connect/auth'
+OIDC_OP_TOKEN_ENDPOINT = 'https://app-staging.phasetwo.io/auth/realms/django/protocol/openid-connect/token'
+OIDC_OP_USER_ENDPOINT = 'https://app-staging.phasetwo.io/auth/realms/django/protocol/openid-connect/userinfo'
+OIDC_OP_JWKS_ENDPOINT = 'https://app-staging.phasetwo.io/auth/realms/django/protocol/openid-connect/certs'
+OIDC_RP_SIGN_ALGO = 'RS256'
+
+LOGIN_URL = 'oidc_authentication_init'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
